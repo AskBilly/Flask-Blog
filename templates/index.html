@@ -1,0 +1,90 @@
+
+{% extends "layout.html" %}
+
+{% block dashboardlink %}
+<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Home</a></li>
+    
+{% endblock dashboardlink %}
+
+
+{% block content %}
+
+    <!-- Page Header-->
+    <header class="masthead mb-3" style="background-image: url('static/assets/img/posts-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>{{templateParams['blog_name']}}</h1>
+                        <span class="subheading">{{templateParams['tag_line']}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+{% if posts %}
+    
+
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+
+            
+            <!-- Todo: Fetch it using for loop from the database -->
+            <!-- Post preview-->
+            {% for post in posts %}
+            <div class="post-preview">
+                <a href="/post/{{ post.slug }}">
+                    <h2 class="post-title">{{ post.title }}</h2>
+                    <h3 class="post-subtitle">{{post.tagline}}</h3>
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    <a href="#!">Admin</a>
+                        on {{ post.date }}
+                    </p>
+                </div>
+                {{post.content[0:160] | safe}}... <i>continue reading</i>
+                <!-- Divider-->
+                <hr class="my-4" />
+                
+                {% endfor %}
+                
+                <!-- Pager -->
+                <div class="d-flex mb-4" style="justify-content: space-between ;">
+                    {% if page==1 %}
+
+                        {% if allPosts|length > 3 %}
+                        <a class="btn btn-primary text-uppercase" style="display: block; margin-left: auto" href="{{next}}">Older
+                            Posts →</a>
+                        
+                        {% endif %}
+
+                        
+                    {% elif page==last %}
+                        <a class="btn btn-primary text-uppercase" href="{{prev}}">&larr; Newer
+                    Posts</a>
+                    
+                    {% else %}
+                    <a class="btn btn-primary text-uppercase" href="{{prev}}">&larr; Newer
+                    Posts</a>
+                    <a class="btn btn-primary text-uppercase" href="{{next}}">Older
+                    Posts →</a>
+                
+                    {% endif %}
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+
+{% else %}
+<div class="alert alert-secondary mx-3" role="alert">
+    No Post found in the Database. Add your first Post!
+  </div>
+{% endif %}
+    
+{% endblock %}

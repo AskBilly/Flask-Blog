@@ -1,0 +1,22 @@
+{
+    "parameters": 
+    {
+        "local_server": "True",
+        "local_uri": "sqlite:///code splash.db",
+        "production_uri": "mysql://user:password@localhost/code splash",
+        "facebook": "https://facebook.com/codesplash",
+        "twitter": "https://twitter.com/codesplash",
+        "github": "https://github.com/AskBillyGates",
+        "blog_name": "Code Splash",
+        "tag_line": "A Blog for coding Enthusiast",
+        "gmail_user": "user@gmail.com",
+        "gmail_password": "password",
+        "about_text": "Hi my name is Majid and I create blog websites and I also have my personal blog",
+        "no_of_posts": 3,
+        "login_img": "login.svg",
+        "admin_user": "majid",
+        "admin_password": "password",
+        "upload_location": "D:\\Projects\\My Flask Blog\\static\\assets\\img"
+
+    }
+}
